@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
+
+import Civilization from "./Components/Civilization/Civilization";
+import Navbar from "./Components/Navbar/Navbar";
+import Main from "./Components/Navbar/Main/Main";
+import CivilizationDetail from "./Components/Civilization/CivilizationDetail";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route path="/civilization/:id">
+            <CivilizationDetail />
+          </Route>
+          <Route path="/civilization">
+            <Civilization />
+          </Route>
+          <Route path="/" exact>
+            <Main />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
